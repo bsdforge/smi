@@ -1,0 +1,65 @@
+.TH "smi" "1" "1.4.0" "Chris Hutchinson" "smi General Commands Manual"
+.SH "NAME"
+.LP 
+\fBsmi\fR \- Simple Markup Interpreter / Filter
+.SH "SYNTAX"
+.RP 
+smi [ \-h \-n \-v ] \fIInput\fP  \fIOutput\fP
+.br 
+smi [ \-h \-n \-v ] \fIInFile\fP > \fIOutFile\fP
+.SH "DESCRIPTION"
+.LP 
+The \fBsmi\fR interpreter, assumes the first argument (\fIInput\fR, or
+\fIInFile\fR) contains simple markup \-\- Markdown, for example.
+.br 
+\fBsmi\fR will return that \fIInput\fR, or \fIInFile\fR in HTML format.
+\fIOutput\fR, if not specified, will be to \fBSTDOUT\fR. Which can be piped to
+something, or redirected, as desired. If \fIInput\fR is formatted in HTML
+markup, \fBsmi\fR will return the meta\-characters as their entities \-\-
+nice, if you'd like to display Markup in HTML <code> blocks. Given this fact,
+one might also consider \fBsmi\fR a Filter, as well. Possible use cases, are
+quite broad, and can't possibly be fully deacribed here.
+
+.SH "OPTIONS"
+.LP 
+.TP 
+\fB\-h\fR Help;
+Displays usage options.
+.TP 
+\fB\-n\fR Strict Mode;
+escape HTML strictly (input).
+.TP 
+\fB\-\-v\fR Version;
+Output version information, and exit.
+.SH "FILES"
+.LP 
+If no \fIOutfile\fP is given, \fIOutput\fP is sent to standard output.
+The \fIInput\fP, and \fIOutput\fP are processed strictly serially;
+consequently \fBsmi\fR may be used in pipe\-lines.
+\fI
+.SH "EXAMPLES"
+.LP 
+Create a web page, from one written in Markdown:
+.LP 
+\fBsmi\fR Markdown.txt > Markdown.html
+.LP 
+Take the HTML file generated above, and make the output suitable for displaying
+within a <code> block on your web pages:
+.LP 
+\fBsmi \-n\fR Maekdown.html > Markdown.code
+
+.SH "BUGS"
+.LP 
+Strictly speaking, Markdown syntax still needs better interpretation.
+The only thing missing in this area, is handling of <cite>.
+.br 
+Other than that; I am aware of no bugs. <cite>, and better documentation
+will be addressed in the next version.
+.SH "AUTHORS"
+.LP 
+Chris Hutchinson <portmaster@bsdforge.com>
+.br 
+Enno boland <g@s01.de>
+.SH "SEE ALSO"
+.LP 
+pipe(2)
